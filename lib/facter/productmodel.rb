@@ -13,6 +13,7 @@
 is_docker = (Facter.value(:container) == "docker")
 
 Facter.add(:productmodel) do
+  confine { Facter.value(:kernelversion) =~ /^JNPR/ }
   setcode do
 
     # In case of docker container, open a NETCONF/SSH session
