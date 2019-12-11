@@ -11,6 +11,7 @@
 #
 
 Facter.add(:container) do
+  confine { Facter.value(:kernelversion) =~ /^JNPR/ }
   setcode do
     query = "/docker"
     arr = File.readlines("/proc/1/cgroup").grep /#{query}/i
